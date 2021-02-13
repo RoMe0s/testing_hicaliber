@@ -1,0 +1,29 @@
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./main:/application
+    ports:
+      - "${NGINX_PORT}:80"
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    build: ./php-fpm
+    working_dir: /application
+    volumes:
+      - ./main:/application
+
+  mysql:
+    image: mysql:8
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+    environment:
+      - TZ=${MYSQL_TIME_ZONE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+networks:
+  default:
