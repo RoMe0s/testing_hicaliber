@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property float $price
  * @property int $bedrooms
+ * @property int $bathrooms
  * @property int $storeys
  * @property int $garages
  */
@@ -23,6 +24,7 @@ class Building extends Model
         'name',
         'price',
         'bedrooms',
+        'bathrooms',
         'storeys',
         'garages',
     ];
@@ -30,6 +32,7 @@ class Building extends Model
     protected $casts = [
         'price' => 'float',
         'bedrooms' => 'integer',
+        'bathrooms' => 'integer',
         'storeys' => 'integer',
         'garages' => 'integer',
     ];

@@ -19,6 +19,7 @@ class CreateBuildingsTable extends Migration
             $table->string('name')->unique();
             $table->unsignedDouble('price');
             $table->unsignedInteger('bedrooms');
+            $table->unsignedInteger('bathrooms');
             $table->unsignedInteger('storeys');
             $table->unsignedInteger('garages');
 
