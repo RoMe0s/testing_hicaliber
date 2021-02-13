@@ -36,14 +36,20 @@ class SearchRequest extends FormRequest
      */
     public function rules()
     {
+        $priceToRule = 'sometimes|nullable|numeric|min:0';
+
+        if ($this->has('price_from') && $this->get('price_from') !== null) {
+            $priceToRule .= '|gte:price_from';
+        }
+
         return [
-            'name' => 'sometimes|string',
-            'price_from' => 'sometimes|numeric|min:0',
-            'price_to' => 'sometimes|numeric|min:0|gte:price_from',
-            'bedrooms' => 'sometimes|integer|min:0',
-            'bathrooms' => 'sometimes|integer|min:0',
-            'storeys' => 'sometimes|integer|min:0',
-            'garages' => 'sometimes|integer|min:0',
+            'name' => 'sometimes|nullable|string',
+            'price_from' => 'sometimes|nullable|numeric|min:0',
+            'price_to' => $priceToRule,
+            'bedrooms' => 'sometimes|nullable|integer|min:0',
+            'bathrooms' => 'sometimes|nullable|integer|min:0',
+            'storeys' => 'sometimes|nullable|integer|min:0',
+            'garages' => 'sometimes|nullable|integer|min:0',
         ];
     }
 

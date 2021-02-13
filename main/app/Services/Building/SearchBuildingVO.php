@@ -31,7 +31,7 @@ class SearchBuildingVO
             $this->criteria[] = new EqualOrGreaterThanCriteria('price', $price_from);
         }
 
-        if ($price_from !== null) {
+        if ($price_to !== null) {
             $this->criteria[] = new EqualOrLessThanCriteria('price', $price_to);
         }
 
